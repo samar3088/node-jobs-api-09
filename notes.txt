@@ -1,0 +1,29 @@
+Check where we have used "CORS" in previous projects
+
+########## Password Hashing ##########
+
+const salt = await bcrypt.genSalt(10);
+const hashedPassword = await bcrypt.hash(password,salt)
+
+########### Compare Hashed Password ##############
+
+bcrypt.compare(candidatePassword, this.password)
+
+
+############ JWT Token ############
+
+jwt.sign({ userId:this._id, name:this.name}, process.env.JWT_SECRET, {
+    expiresIn: process.env.JWT_LIFETIME
+})
+
+########### Set Token Dynamically In POSTMAN #############
+
+const jsonData = pm.response.json()
+pm.globals.set("accessToken",jsonData.token)
+
+Security steps to implement, when moving code to Heroku.
+1.	Helmet: Sets various http headers to ensure security
+2.	Cors: ensures api is accessible from diff domains
+3.	XSS Clean: Sanitizes the user inputs.
+4.	Express-rate-limit: Limit the amount of requests user can make.
+
